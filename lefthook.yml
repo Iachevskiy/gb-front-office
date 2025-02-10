@@ -20,8 +20,18 @@
  pre-commit:
    parallel: true
    jobs:
-     - run: npx eslint {staged_files}
+     - name: eslint
+       run: npx eslint {staged_files}
+       fail-fast: true
        glob: "*.{ts,vue}"
+
+     - name: vue-tsc
+       glob: "*.{ts,vue}"
+       fail-fast: true
+       run: npx vue-tsc --skipLibCheck --noEmit
+
+
+
 #
 #     - name: rubocop
 #       glob: "*.rb"

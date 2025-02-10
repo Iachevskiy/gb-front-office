@@ -501,7 +501,7 @@ export default defineConfigWithVueTs(
       ],
       "multiline-comment-style": [
         "error",
-        "starred-block"
+        "separate-lines"
       ],
       "multiline-ternary": [
         "error",

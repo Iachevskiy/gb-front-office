@@ -1,9 +1,11 @@
 @import './base.css';
 
+
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /*padding: 0.5rem;*/
   font-weight: normal;
 }
 
@@ -33,3 +35,14 @@ a,
     padding: 0 2rem;
   }
 }
+
+.van-calendar__confirm {
+  height: 60px !important;
+  margin-bottom: 50px !important;
+}
+
+.van-field__control {
+  font-size: 18px !important;
+}
+
+/*--van-calendar-confirm-button-height: 40px;*/

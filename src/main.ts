@@ -1,14 +1,19 @@
-import './assets/main.css'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import App from "./App.vue";
+import router from "./router";
+import "./assets/main.css";
 
-import App from './App.vue'
-import router from './router'
+import "vant/lib/index.css";
+const app = createApp(App);
 
-const app = createApp(App)
+import { Locale } from "vant";
+import ruRU from "vant/es/locale/lang/ru-RU";
 
-app.use(createPinia())
-app.use(router)
+Locale.use("ru-RU", ruRU);
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");

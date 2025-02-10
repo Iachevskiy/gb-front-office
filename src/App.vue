@@ -1,7 +1,5 @@
 <template>
   <header>
-    header
-
     <div class="wrapper">
       <nav>
         <RouterLink to="/">
@@ -20,4 +18,5 @@
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+
 </script>
