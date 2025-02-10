@@ -1,5 +1,7 @@
 <template>
   <header>
+    <logo />
+
     <div class="wrapper">
       <nav>
         <RouterLink to="/catalog">
@@ -19,6 +21,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 
+import logo from "@/assets/logo.svg";
 </script>
 
 <style lang="scss">
