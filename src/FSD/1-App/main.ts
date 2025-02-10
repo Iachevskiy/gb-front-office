@@ -6,6 +6,8 @@ import routerProvider from "FSD/App/Providers/router";
 import App from "./App.vue";
 import "./Providers/vant";
 
+import "normalize.css";
+
 const app = createApp(App);
 
 app.use(createPinia());
