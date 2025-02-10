@@ -64,6 +64,7 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
+  css: { preprocessorOptions: { scss: { additionalData: `@use "${FSDPathAlias["FSD/Shared"]}/Styles/app-vite" as *;` } } }
 
 });

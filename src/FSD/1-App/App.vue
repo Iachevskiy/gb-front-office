@@ -3,17 +3,17 @@
     <header>
       <logo />
 
-      <div class="wrapper">
-        <nav>
-          <RouterLink to="/catalog">
-            catalog
-          </RouterLink>
+      <!--      <div class="wrapper"> -->
+      <!--        <nav> -->
+      <!--          <RouterLink to="/catalog"> -->
+      <!--            catalog -->
+      <!--          </RouterLink> -->
 
-          <RouterLink to="/lc">
-            lc
-          </RouterLink>
-        </nav>
-      </div>
+      <!--          <RouterLink to="/lc"> -->
+      <!--            lc -->
+      <!--          </RouterLink> -->
+      <!--        </nav> -->
+      <!--      </div> -->
     </header>
 
     <Calendar
@@ -22,23 +22,55 @@
       position="right"
     />
 
-    <button @click="show = true">
-      show
-    </button>
+    <main>
+      <div>
+        main content
+        <button @click="show = true">
+          show
+        </button>
 
-    <RouterView />
+        <RouterView />
+      </div>
+    </main>
+
+    <footer>
+      <Tabbar
+        v-model="active"
+        :border="false"
+      >
+        <TabbarItem icon="home-o">
+          Tab
+        </TabbarItem>
+
+        <TabbarItem icon="search">
+          Tab
+        </TabbarItem>
+
+        <TabbarItem icon="friends-o">
+          Tab
+        </TabbarItem>
+
+        <TabbarItem icon="setting-o">
+          Tab
+        </TabbarItem>
+      </Tabbar>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 
-import { Calendar } from "vant";
+import {
+  Calendar, Tabbar, TabbarItem
+} from "vant";
 
 import logo from "@/assets/logo.svg";
 
 const show = ref(false);
+
+const active = ref(0);
 </script>
 
 <style lang="scss">
@@ -48,6 +80,27 @@ header {
 }
 
 .common-layout {
-  background: aliceblue;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background: white;
+
+  main {
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    div {
+      height: 200%;
+    }
+  }
+
+  footer {
+    padding-bottom: $space-xl;
+    box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 6%);
+
+    .van-tabbar {
+      position: relative;
+    }
+  }
 }
 </style>
