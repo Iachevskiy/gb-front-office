@@ -1,0 +1,52 @@
+/* Ширина скроллбара */
+$scrollbar-width: 8px;
+
+/* Цвет трека скроллбара */
+$scrollbar-track-color: #f1f1f1;
+
+/* Цвет ползунка скроллбара */
+$scrollbar-thumb-color: #c1c1c1;
+
+/* Цвет ползунка скроллбара при наведении */
+$scrollbar-thumb-hover-color: #a1a1a1;
+
+/* Общие стили для всех скроллбаров */
+* {
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+
+  /* Для Firefox */
+  scrollbar-width: thin;
+
+  /* Для WebKit браузеров (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $scrollbar-track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* Для создания небольшого отступа */
+    border: 2px solid $scrollbar-track-color;
+    border-radius: calc($scrollbar-width / 2);
+    background-color: $scrollbar-thumb-color;
+  }
+
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $scrollbar-thumb-hover-color;
+  }
+
+
+
+}
+
+/* Для стилизации прокрутки в Firefox */
+@document url-prefix() {
+  * {
+    scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+    scrollbar-width: thin;
+  }
+}

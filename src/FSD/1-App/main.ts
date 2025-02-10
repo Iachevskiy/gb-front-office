@@ -7,6 +7,7 @@ import App from "./App.vue";
 import "./Providers/vant";
 
 import "normalize.css";
+import "FSD/Shared/Styles/app.scss";
 
 const app = createApp(App);
 

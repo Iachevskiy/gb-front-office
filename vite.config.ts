@@ -46,6 +46,24 @@ export default defineConfig({
     }
   },
 
-  server: { allowedHosts: [".ngrok-free.app"] }
+  server: { allowedHosts: [".ngrok-free.app"] },
+  build : {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Если путь к файлу совпадает, добавляем в один чанк
+          if (id.includes("HelloWorld")) {
+            return "shared-components";
+          }
+          if (id.includes(".svg") || id.includes("icon.vue")) {
+            return "icons-svg";
+          }
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        }
+      }
+    }
+  }
 
 });

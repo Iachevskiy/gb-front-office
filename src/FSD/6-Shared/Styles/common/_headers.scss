@@ -1,0 +1,30 @@
+@use "./mixins" as *;
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 {
+  @include text-22-28-500;
+}
+
+h2 {
+  @include text-18-24-500;
+
+}
+
+h3 {
+  @include text-20-24-500;
+}
+
+h4 {
+  @include text-18-24-500;
+}
+
+h5 {
+  @include text-16-22-500;
+}
+
+h6 {
+  @include text-14-20-500;
+}

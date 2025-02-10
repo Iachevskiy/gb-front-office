@@ -1,0 +1,102 @@
+@use "./variables" as *;
+
+/* ЦВЕТА ПО УМОЛЧАНИЮ */
+$color-status-error: #f33;
+$color-text-primary: #262633;
+$color-text-secondary: #85889e;
+$color-text-tertiary: #b3b8cc;
+$color-text-disabled: rgb(180 184 204 / 54%);
+$border-width-default: 1.5px;
+$border-radius-default: 16px;
+$field-min-height-default: 64px;
+
+
+
+/* background-color */
+$color-default-bg: transparent;
+$color-default-bg-focused: #fff;
+$color-default-bg-hovered: rgb(180 184 204 / 20%);
+$color-default-bg-disabled: rgb(180 184 204 / 10%);
+
+
+/* border-color */
+$color-default-border: rgb(180 184 204 / 26%);
+$color-default-border-focused: #292933;
+
+
+/* СТИЛИ ДЛЯ ЭЛЕМЕНТОВ ФОРМЫ */
+
+/* background-color */
+$field-text-bg: $color-default-bg;
+$field-text-bg-focused: $color-default-bg-focused;
+$field-text-bg-hovered: $color-default-bg-hovered;
+$field-text-bg-disabled: $color-default-bg-disabled;
+
+
+/* border */
+$field-text-border-color: $color-default-border;
+$field-text-border-color-error: $color-status-error;
+$field-text-border-color-focused: $color-default-border-focused;
+$field-text-border-color-hovered: #b4b8cc;
+$field-text-border-color-disabled: #b4b8cc;
+$field-text-border-width: $border-width-default;
+
+
+/* text-color */
+$field-text-color: $color-text-primary;
+$field-text-color-disabled: $color-text-disabled;
+$field-text-placeholder-color: $color-text-tertiary;
+$field-text-label-color: $color-text-secondary;
+$field-text-addon-color: $color-text-secondary;
+
+
+@mixin uikit-content-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.uikit-content-gap-xxl {
+  @include uikit-content-flex-column;
+  gap: $space-xxl;
+}
+
+.uikit-content-gap-xl {
+  @include uikit-content-flex-column;
+  gap: $space-xl;
+}
+
+.uikit-content-gap-l {
+  @include uikit-content-flex-column;
+  gap: $space-l;
+}
+
+.uikit-content-gap-s {
+  @include uikit-content-flex-column;
+  gap: $space-s;
+}
+
+.uikit-panel-actions-tabs {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-l;
+}
+
+.uikit-panel-actions-tabs-divider {
+  width: 1px;
+  height: 30px;
+  margin-top: $space-l;
+  background-color: $color-text-tertiary;
+}
+
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: $space-s;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxl;
+}
