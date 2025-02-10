@@ -2,12 +2,12 @@
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">
-          Home
+        <RouterLink to="/catalog">
+          catalog
         </RouterLink>
 
-        <RouterLink to="/about">
-          About
+        <RouterLink to="/lc">
+          lc
         </RouterLink>
       </nav>
     </div>

@@ -16,8 +16,17 @@
 
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "icons/*": ["./src/assets/icons/*"],
+      "logos/*": ["./src/assets/logos/*"],
+      "FSD/App/*": ["src/FSD/1-App/*"],
+      "FSD/Pages/*": ["src/FSD/2-Pages/*"],
+      "FSD/Widgets/*": ["src/FSD/3-Widgets/*"],
+      "FSD/Features/*": ["src/FSD/4-Features/*"],
+      "FSD/Entities/*": ["src/FSD/5-Entities/*"],
+      "FSD/Shared/*": ["src/FSD/6-Shared/*"]
     }
   }
 }
