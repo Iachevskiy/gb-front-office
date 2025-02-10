@@ -20,3 +20,10 @@
 import { RouterLink, RouterView } from "vue-router";
 
 </script>
+
+<style lang="scss">
+header {
+  max-height: 100vh;
+  line-height: 1.5;
+}
+</style>

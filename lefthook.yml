@@ -30,6 +30,11 @@
        fail-fast: true
        run: npx vue-tsc --skipLibCheck --noEmit
 
+     - name: stylelint
+       glob: "*.{vue,scss}"
+       fail-fast: true
+       run: npx stylelint {staged_files}
+
 
 
 #
