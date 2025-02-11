@@ -8,7 +8,7 @@ const config: CodegenConfig = {
   ],
   ignoreNoDocuments: true,
   generates        : {
-    "./src/FSD/6-Shared/Fetch/types/": {
+    "./src/FSD/6-Shared/Fetch/generatedTypes/": {
       preset: "client",
 
       config: { useTypeImports: true }

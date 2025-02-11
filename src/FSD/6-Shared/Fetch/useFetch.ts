@@ -1,6 +1,6 @@
 import { computed, watch } from "vue";
 
-import { graphql } from "./types";
+import { graphql } from "./generatedTypes";
 
 import {
   ApolloClient,

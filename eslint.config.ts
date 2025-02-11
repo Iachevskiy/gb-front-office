@@ -28,7 +28,7 @@ export default defineConfigWithVueTs(
       "**/dist/**",
       "**/dist-ssr/**",
       "**/coverage/**",
-      "**/Fetch/types/**"
+      "**/generatedTypes/**"
     ]
   },
 
