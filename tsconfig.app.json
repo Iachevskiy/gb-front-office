@@ -27,6 +27,12 @@
       "FSD/Features/*": ["src/FSD/4-Features/*"],
       "FSD/Entities/*": ["src/FSD/5-Entities/*"],
       "FSD/Shared/*": ["src/FSD/6-Shared/*"]
-    }
+    },
+//    "plugins": [
+//      {
+//        "name": "@0no-co/graphqlsp",
+//        "schema": "./schema.graphql"
+//      }
+//    ]
   }
 }

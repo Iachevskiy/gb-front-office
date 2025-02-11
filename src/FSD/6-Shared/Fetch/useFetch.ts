@@ -1,4 +1,6 @@
-import { watch } from "vue";
+import { computed, watch } from "vue";
+
+import { graphql } from "./types";
 
 import {
   ApolloClient,
@@ -7,7 +9,6 @@ import {
 } from "@apollo/client/core";
 import { provideApolloClient } from "@vue/apollo-composable";
 import { useQuery } from "@vue/apollo-composable";
-import gql from "graphql-tag";
 
 const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql" });
 const cache = new InMemoryCache();
@@ -21,16 +22,18 @@ provideApolloClient(apolloClient);
 
 export default () => {
 
-  const { result } = useQuery(gql`
-    query TestModel2 {
+  const api = useQuery(graphql(`
+    query TestModel {
       testModel {
         id
         name
       }
     }
-  `);
+  `));
 
-  watch(() => result.value, () => {
-    console.info(result.value);
-  });
+  const test = computed(() => api.result.value?.testModel || []);
+
+  watch(() => test.value, () => {
+    console.info(test.value);
+  }, { immediate: true });
 };

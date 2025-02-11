@@ -12,7 +12,8 @@
     "lint": "eslint . --fix",
     "ngrok-start": "ngrok http http://localhost:5173",
     "lint:scss": "stylelint **.{vue,scss}",
-    "lint:scss:fix": "stylelint **.{vue,scss} --fix"
+    "lint:scss:fix": "stylelint **.{vue,scss} --fix",
+    "generate:graphql": "bunx graphql-codegen --config src/FSD/6-Shared/Fetch/codegen.ts --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.12.11",
@@ -28,6 +29,9 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.4",
+    "@graphql-codegen/client-preset": "4.6.2",
+    "@parcel/watcher": "^2.5.1",
     "@stylistic/eslint-plugin": "^3.0.1",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.13.1",
@@ -49,7 +53,7 @@
     "stylelint-config-standard-scss": "^14.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-scss": "^6.11.0",
-    "typescript": "~5.7.3",
+    "typescript": "^5.7.3",
     "vite": "^6.0.11",
     "vite-plugin-svg-sprite": "^0.6.2",
     "vite-plugin-vue-devtools": "^7.7.1",

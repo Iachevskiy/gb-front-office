@@ -27,7 +27,8 @@ export default defineConfigWithVueTs(
     ignores: [
       "**/dist/**",
       "**/dist-ssr/**",
-      "**/coverage/**"
+      "**/coverage/**",
+      "**/Fetch/types/**"
     ]
   },
 
