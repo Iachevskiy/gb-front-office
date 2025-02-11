@@ -68,9 +68,13 @@ import {
 
 import logo from "@/assets/logo.svg";
 
+import useFetch from "FSD/Shared/Fetch/useFetch.ts";
+
 const show = ref(false);
 
 const active = ref(0);
+
+useFetch();
 </script>
 
 <style lang="scss">

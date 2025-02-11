@@ -47,7 +47,13 @@ export default defineConfigWithVueTs(
       ],
       "no-console": [
         "error",
-        { allow: ["error"] }
+        {
+          allow: [
+            "error",
+            "info",
+            "warn"
+          ]
+        }
       ],
       "no-trailing-spaces": ["error"],
       "@stylistic/indent" : [
