@@ -10,7 +10,9 @@ import {
 import { provideApolloClient } from "@vue/apollo-composable";
 import { useQuery } from "@vue/apollo-composable";
 
-const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql" });
+// const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql" });
+
+const httpLink = createHttpLink({ uri: import.meta.env.VITE_API_URL });
 const cache = new InMemoryCache();
 
 const apolloClient = new ApolloClient({
@@ -21,7 +23,6 @@ const apolloClient = new ApolloClient({
 provideApolloClient(apolloClient);
 
 export default () => {
-
   const api = useQuery(graphql(`
     query TestModel {
       testModel {

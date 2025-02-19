@@ -7,6 +7,11 @@ RUN npm install --frozen-lockfile
 
 # Копируем исходники Vue и билдим проект
 COPY . .
+
+# Передаём ENV переменную при билде
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
 RUN npm run build
 
 # 🔹 2. Этап с Nginx для раздачи готового фронта
