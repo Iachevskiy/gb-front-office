@@ -29,6 +29,8 @@
           show
         </button>
 
+        <pre>{{ dd }}</pre>
+
         <RouterView />
       </div>
     </main>
@@ -74,7 +76,7 @@ const show = ref(false);
 
 const active = ref(0);
 
-useFetch();
+const dd = useFetch();
 </script>
 
 <style lang="scss">

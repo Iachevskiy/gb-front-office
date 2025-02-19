@@ -14,10 +14,10 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n    query TestModel {\n      testModel {\n        id\n        name\n      }\n    }\n  ": typeof types.TestModelDocument,
+    "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  ": typeof types.ExampleQueryDocument,
 };
 const documents: Documents = {
-    "\n    query TestModel {\n      testModel {\n        id\n        name\n      }\n    }\n  ": types.TestModelDocument,
+    "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  ": types.ExampleQueryDocument,
 };
 
 /**
@@ -37,7 +37,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query TestModel {\n      testModel {\n        id\n        name\n      }\n    }\n  "): (typeof documents)["\n    query TestModel {\n      testModel {\n        id\n        name\n      }\n    }\n  "];
+export function graphql(source: "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  "): (typeof documents)["\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

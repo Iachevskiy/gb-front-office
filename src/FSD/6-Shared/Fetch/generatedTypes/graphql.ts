@@ -24,31 +24,69 @@ export type InnerOrder = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  deleteFromTestModel: Array<TestModelItem>;
-  insertIntoTestModel: Array<TestModelItem>;
-  insertIntoTestModelSingle?: Maybe<TestModelItem>;
-  updateTestModel: Array<TestModelItem>;
+  deleteFromPermission: Array<PermissionItem>;
+  deleteFromRole: Array<RoleItem>;
+  generate2FA: TwoFa;
+  insertIntoPermission: Array<PermissionItem>;
+  insertIntoPermissionSingle?: Maybe<PermissionItem>;
+  insertIntoRole: Array<RoleItem>;
+  insertIntoRoleSingle?: Maybe<RoleItem>;
+  updatePermission: Array<PermissionItem>;
+  updateRole: Array<RoleItem>;
+  verify2FA: TwoFaResponse;
 };
 
 
-export type MutationDeleteFromTestModelArgs = {
-  where?: InputMaybe<TestModelFilters>;
+export type MutationDeleteFromPermissionArgs = {
+  where?: InputMaybe<PermissionFilters>;
 };
 
 
-export type MutationInsertIntoTestModelArgs = {
-  values: Array<TestModelInsertInput>;
+export type MutationDeleteFromRoleArgs = {
+  where?: InputMaybe<RoleFilters>;
 };
 
 
-export type MutationInsertIntoTestModelSingleArgs = {
-  values: TestModelInsertInput;
+export type MutationGenerate2FaArgs = {
+  userId: Scalars['String']['input'];
 };
 
 
-export type MutationUpdateTestModelArgs = {
-  set: TestModelUpdateInput;
-  where?: InputMaybe<TestModelFilters>;
+export type MutationInsertIntoPermissionArgs = {
+  values: Array<PermissionInsertInput>;
+};
+
+
+export type MutationInsertIntoPermissionSingleArgs = {
+  values: PermissionInsertInput;
+};
+
+
+export type MutationInsertIntoRoleArgs = {
+  values: Array<RoleInsertInput>;
+};
+
+
+export type MutationInsertIntoRoleSingleArgs = {
+  values: RoleInsertInput;
+};
+
+
+export type MutationUpdatePermissionArgs = {
+  set: PermissionUpdateInput;
+  where?: InputMaybe<PermissionFilters>;
+};
+
+
+export type MutationUpdateRoleArgs = {
+  set: RoleUpdateInput;
+  where?: InputMaybe<RoleFilters>;
+};
+
+
+export type MutationVerify2FaArgs = {
+  token: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
 };
 
 /** Order by direction */
@@ -59,90 +97,112 @@ export enum OrderDirection {
   Desc = 'desc'
 }
 
-export type Query = {
-  __typename?: 'Query';
-  testModel: Array<TestModelSelectItem>;
-  testModelSingle?: Maybe<TestModelSelectItem>;
-};
-
-
-export type QueryTestModelArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<TestModelOrderBy>;
-  where?: InputMaybe<TestModelFilters>;
-};
-
-
-export type QueryTestModelSingleArgs = {
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<TestModelOrderBy>;
-  where?: InputMaybe<TestModelFilters>;
-};
-
-export type TestModelFilters = {
-  OR?: InputMaybe<Array<TestModelFiltersOr>>;
-  id?: InputMaybe<TestModelIdFilters>;
-  name?: InputMaybe<TestModelNameFilters>;
-};
-
-export type TestModelFiltersOr = {
-  id?: InputMaybe<TestModelIdFilters>;
-  name?: InputMaybe<TestModelNameFilters>;
-};
-
-export type TestModelIdFilters = {
-  OR?: InputMaybe<Array<TestModelIdfiltersOr>>;
-  eq?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
+export type PermissionEnabledFilters = {
+  OR?: InputMaybe<Array<PermissionEnabledfiltersOr>>;
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
   ilike?: InputMaybe<Scalars['String']['input']>;
   /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  inArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
   isNull?: InputMaybe<Scalars['Boolean']['input']>;
   like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
-  ne?: InputMaybe<Scalars['Int']['input']>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
   notIlike?: InputMaybe<Scalars['String']['input']>;
   /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  notInArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TestModelIdfiltersOr = {
-  eq?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
+export type PermissionEnabledfiltersOr = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
   ilike?: InputMaybe<Scalars['String']['input']>;
   /** Array<undefined> */
-  inArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  inArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
   isNull?: InputMaybe<Scalars['Boolean']['input']>;
   like?: InputMaybe<Scalars['String']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
-  ne?: InputMaybe<Scalars['Int']['input']>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
   notIlike?: InputMaybe<Scalars['String']['input']>;
   /** Array<undefined> */
-  notInArray?: InputMaybe<Array<Scalars['Int']['input']>>;
+  notInArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TestModelInsertInput = {
-  id?: InputMaybe<Scalars['Int']['input']>;
+export type PermissionFilters = {
+  OR?: InputMaybe<Array<PermissionFiltersOr>>;
+  enabled?: InputMaybe<PermissionEnabledFilters>;
+  id?: InputMaybe<PermissionIdFilters>;
+  name?: InputMaybe<PermissionNameFilters>;
+};
+
+export type PermissionFiltersOr = {
+  enabled?: InputMaybe<PermissionEnabledFilters>;
+  id?: InputMaybe<PermissionIdFilters>;
+  name?: InputMaybe<PermissionNameFilters>;
+};
+
+export type PermissionIdFilters = {
+  OR?: InputMaybe<Array<PermissionIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PermissionIdfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PermissionInsertInput = {
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
 };
 
-export type TestModelItem = {
-  __typename?: 'TestModelItem';
-  id: Scalars['Int']['output'];
+export type PermissionItem = {
+  __typename?: 'PermissionItem';
+  enabled?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['String']['output'];
   name: Scalars['String']['output'];
 };
 
-export type TestModelNameFilters = {
-  OR?: InputMaybe<Array<TestModelNamefiltersOr>>;
+export type PermissionNameFilters = {
+  OR?: InputMaybe<Array<PermissionNamefiltersOr>>;
   eq?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
@@ -161,7 +221,7 @@ export type TestModelNameFilters = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TestModelNamefiltersOr = {
+export type PermissionNamefiltersOr = {
   eq?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
@@ -180,26 +240,195 @@ export type TestModelNamefiltersOr = {
   notLike?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TestModelOrderBy = {
+export type PermissionOrderBy = {
+  enabled?: InputMaybe<InnerOrder>;
   id?: InputMaybe<InnerOrder>;
   name?: InputMaybe<InnerOrder>;
 };
 
-export type TestModelSelectItem = {
-  __typename?: 'TestModelSelectItem';
-  id: Scalars['Int']['output'];
+export type PermissionSelectItem = {
+  __typename?: 'PermissionSelectItem';
+  enabled?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['String']['output'];
   name: Scalars['String']['output'];
 };
 
-export type TestModelUpdateInput = {
-  id?: InputMaybe<Scalars['Int']['input']>;
+export type PermissionUpdateInput = {
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type TestModelQueryVariables = Exact<{ [key: string]: never; }>;
+export type Query = {
+  __typename?: 'Query';
+  permission: Array<PermissionSelectItem>;
+  permissionSingle?: Maybe<PermissionSelectItem>;
+  role: Array<RoleSelectItem>;
+  roleSingle?: Maybe<RoleSelectItem>;
+};
 
 
-export type TestModelQuery = { __typename?: 'Query', testModel: Array<{ __typename?: 'TestModelSelectItem', id: number, name: string }> };
+export type QueryPermissionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<PermissionOrderBy>;
+  where?: InputMaybe<PermissionFilters>;
+};
 
 
-export const TestModelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TestModel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"testModel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<TestModelQuery, TestModelQueryVariables>;
+export type QueryPermissionSingleArgs = {
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<PermissionOrderBy>;
+  where?: InputMaybe<PermissionFilters>;
+};
+
+
+export type QueryRoleArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<RoleOrderBy>;
+  where?: InputMaybe<RoleFilters>;
+};
+
+
+export type QueryRoleSingleArgs = {
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<RoleOrderBy>;
+  where?: InputMaybe<RoleFilters>;
+};
+
+export type RoleFilters = {
+  OR?: InputMaybe<Array<RoleFiltersOr>>;
+  id?: InputMaybe<RoleIdFilters>;
+  name?: InputMaybe<RoleNameFilters>;
+};
+
+export type RoleFiltersOr = {
+  id?: InputMaybe<RoleIdFilters>;
+  name?: InputMaybe<RoleNameFilters>;
+};
+
+export type RoleIdFilters = {
+  OR?: InputMaybe<Array<RoleIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type RoleIdfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type RoleInsertInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type RoleItem = {
+  __typename?: 'RoleItem';
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type RoleNameFilters = {
+  OR?: InputMaybe<Array<RoleNamefiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type RoleNamefiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type RoleOrderBy = {
+  id?: InputMaybe<InnerOrder>;
+  name?: InputMaybe<InnerOrder>;
+};
+
+export type RoleSelectItem = {
+  __typename?: 'RoleSelectItem';
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type RoleUpdateInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TwoFa = {
+  __typename?: 'TwoFA';
+  otpauthUrl: Scalars['String']['output'];
+  qrCode: Scalars['String']['output'];
+  secret: Scalars['String']['output'];
+};
+
+export type TwoFaResponse = {
+  __typename?: 'TwoFAResponse';
+  success: Scalars['Boolean']['output'];
+};
+
+export type ExampleQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ExampleQueryQuery = { __typename?: 'Query', role: Array<{ __typename?: 'RoleSelectItem', id: string, name: string }> };
+
+
+export const ExampleQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ExampleQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"role"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ExampleQueryQuery, ExampleQueryQueryVariables>;
