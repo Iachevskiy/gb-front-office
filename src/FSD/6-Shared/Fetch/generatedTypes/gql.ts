@@ -14,10 +14,10 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  ": typeof types.ExampleQueryDocument,
+    "\n    query User {\n      user {\n        id\n        firstName\n        middleName\n        lastName\n        telegramId\n        isConfirmed\n        twoFactorKey\n      }\n    }\n  ": typeof types.UserDocument,
 };
 const documents: Documents = {
-    "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  ": types.ExampleQueryDocument,
+    "\n    query User {\n      user {\n        id\n        firstName\n        middleName\n        lastName\n        telegramId\n        isConfirmed\n        twoFactorKey\n      }\n    }\n  ": types.UserDocument,
 };
 
 /**
@@ -37,7 +37,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  "): (typeof documents)["\n    query ExampleQuery {\n      role {\n        id\n        name\n      }\n    }\n  "];
+export function graphql(source: "\n    query User {\n      user {\n        id\n        firstName\n        middleName\n        lastName\n        telegramId\n        isConfirmed\n        twoFactorKey\n      }\n    }\n  "): (typeof documents)["\n    query User {\n      user {\n        id\n        firstName\n        middleName\n        lastName\n        telegramId\n        isConfirmed\n        twoFactorKey\n      }\n    }\n  "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

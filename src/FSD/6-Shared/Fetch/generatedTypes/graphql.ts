@@ -26,13 +26,17 @@ export type Mutation = {
   __typename?: 'Mutation';
   deleteFromPermission: Array<PermissionItem>;
   deleteFromRole: Array<RoleItem>;
+  deleteFromUser: Array<UserItem>;
   generate2FA: TwoFa;
   insertIntoPermission: Array<PermissionItem>;
   insertIntoPermissionSingle?: Maybe<PermissionItem>;
   insertIntoRole: Array<RoleItem>;
   insertIntoRoleSingle?: Maybe<RoleItem>;
+  insertIntoUser: Array<UserItem>;
+  insertIntoUserSingle?: Maybe<UserItem>;
   updatePermission: Array<PermissionItem>;
   updateRole: Array<RoleItem>;
+  updateUser: Array<UserItem>;
   verify2FA: TwoFaResponse;
 };
 
@@ -44,6 +48,11 @@ export type MutationDeleteFromPermissionArgs = {
 
 export type MutationDeleteFromRoleArgs = {
   where?: InputMaybe<RoleFilters>;
+};
+
+
+export type MutationDeleteFromUserArgs = {
+  where?: InputMaybe<UserFilters>;
 };
 
 
@@ -72,6 +81,16 @@ export type MutationInsertIntoRoleSingleArgs = {
 };
 
 
+export type MutationInsertIntoUserArgs = {
+  values: Array<UserInsertInput>;
+};
+
+
+export type MutationInsertIntoUserSingleArgs = {
+  values: UserInsertInput;
+};
+
+
 export type MutationUpdatePermissionArgs = {
   set: PermissionUpdateInput;
   where?: InputMaybe<PermissionFilters>;
@@ -81,6 +100,12 @@ export type MutationUpdatePermissionArgs = {
 export type MutationUpdateRoleArgs = {
   set: RoleUpdateInput;
   where?: InputMaybe<RoleFilters>;
+};
+
+
+export type MutationUpdateUserArgs = {
+  set: UserUpdateInput;
+  where?: InputMaybe<UserFilters>;
 };
 
 
@@ -265,6 +290,8 @@ export type Query = {
   permissionSingle?: Maybe<PermissionSelectItem>;
   role: Array<RoleSelectItem>;
   roleSingle?: Maybe<RoleSelectItem>;
+  user: Array<UserSelectItem>;
+  userSingle?: Maybe<UserSelectItem>;
 };
 
 
@@ -295,6 +322,21 @@ export type QueryRoleSingleArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<RoleOrderBy>;
   where?: InputMaybe<RoleFilters>;
+};
+
+
+export type QueryUserArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UserOrderBy>;
+  where?: InputMaybe<UserFilters>;
+};
+
+
+export type QueryUserSingleArgs = {
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<UserOrderBy>;
+  where?: InputMaybe<UserFilters>;
 };
 
 export type RoleFilters = {
@@ -425,10 +467,356 @@ export type TwoFaResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type ExampleQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserFilters = {
+  OR?: InputMaybe<Array<UserFiltersOr>>;
+  firstName?: InputMaybe<UserFirstNameFilters>;
+  id?: InputMaybe<UserIdFilters>;
+  isConfirmed?: InputMaybe<UserIsConfirmedFilters>;
+  lastName?: InputMaybe<UserLastNameFilters>;
+  middleName?: InputMaybe<UserMiddleNameFilters>;
+  telegramId?: InputMaybe<UserTelegramIdFilters>;
+  twoFactorKey?: InputMaybe<UserTwoFactorKeyFilters>;
+};
+
+export type UserFiltersOr = {
+  firstName?: InputMaybe<UserFirstNameFilters>;
+  id?: InputMaybe<UserIdFilters>;
+  isConfirmed?: InputMaybe<UserIsConfirmedFilters>;
+  lastName?: InputMaybe<UserLastNameFilters>;
+  middleName?: InputMaybe<UserMiddleNameFilters>;
+  telegramId?: InputMaybe<UserTelegramIdFilters>;
+  twoFactorKey?: InputMaybe<UserTwoFactorKeyFilters>;
+};
+
+export type UserFirstNameFilters = {
+  OR?: InputMaybe<Array<UserFirstNamefiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserFirstNamefiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserIdFilters = {
+  OR?: InputMaybe<Array<UserIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserIdfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserInsertInput = {
+  firstName: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isConfirmed?: InputMaybe<Scalars['Boolean']['input']>;
+  lastName: Scalars['String']['input'];
+  middleName?: InputMaybe<Scalars['String']['input']>;
+  telegramId: Scalars['Float']['input'];
+  twoFactorKey?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserIsConfirmedFilters = {
+  OR?: InputMaybe<Array<UserIsConfirmedfiltersOr>>;
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserIsConfirmedfiltersOr = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserItem = {
+  __typename?: 'UserItem';
+  firstName: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  isConfirmed?: Maybe<Scalars['Boolean']['output']>;
+  lastName: Scalars['String']['output'];
+  middleName?: Maybe<Scalars['String']['output']>;
+  telegramId: Scalars['Float']['output'];
+  twoFactorKey?: Maybe<Scalars['String']['output']>;
+};
+
+export type UserLastNameFilters = {
+  OR?: InputMaybe<Array<UserLastNamefiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserLastNamefiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserMiddleNameFilters = {
+  OR?: InputMaybe<Array<UserMiddleNamefiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserMiddleNamefiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserOrderBy = {
+  firstName?: InputMaybe<InnerOrder>;
+  id?: InputMaybe<InnerOrder>;
+  isConfirmed?: InputMaybe<InnerOrder>;
+  lastName?: InputMaybe<InnerOrder>;
+  middleName?: InputMaybe<InnerOrder>;
+  telegramId?: InputMaybe<InnerOrder>;
+  twoFactorKey?: InputMaybe<InnerOrder>;
+};
+
+export type UserSelectItem = {
+  __typename?: 'UserSelectItem';
+  firstName: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  isConfirmed?: Maybe<Scalars['Boolean']['output']>;
+  lastName: Scalars['String']['output'];
+  middleName?: Maybe<Scalars['String']['output']>;
+  telegramId: Scalars['Float']['output'];
+  twoFactorKey?: Maybe<Scalars['String']['output']>;
+};
+
+export type UserTelegramIdFilters = {
+  OR?: InputMaybe<Array<UserTelegramIdfiltersOr>>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserTelegramIdfiltersOr = {
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['Float']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserTwoFactorKeyFilters = {
+  OR?: InputMaybe<Array<UserTwoFactorKeyfiltersOr>>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserTwoFactorKeyfiltersOr = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  ilike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  inArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  isNotNull?: InputMaybe<Scalars['Boolean']['input']>;
+  isNull?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  notIlike?: InputMaybe<Scalars['String']['input']>;
+  /** Array<undefined> */
+  notInArray?: InputMaybe<Array<Scalars['String']['input']>>;
+  notLike?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserUpdateInput = {
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isConfirmed?: InputMaybe<Scalars['Boolean']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  middleName?: InputMaybe<Scalars['String']['input']>;
+  telegramId?: InputMaybe<Scalars['Float']['input']>;
+  twoFactorKey?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExampleQueryQuery = { __typename?: 'Query', role: Array<{ __typename?: 'RoleSelectItem', id: string, name: string }> };
+export type UserQuery = { __typename?: 'Query', user: Array<{ __typename?: 'UserSelectItem', id: string, firstName: string, middleName?: string | null, lastName: string, telegramId: number, isConfirmed?: boolean | null, twoFactorKey?: string | null }> };
 
 
-export const ExampleQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ExampleQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"role"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ExampleQueryQuery, ExampleQueryQueryVariables>;
+export const UserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"User"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"middleName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"telegramId"}},{"kind":"Field","name":{"kind":"Name","value":"isConfirmed"}},{"kind":"Field","name":{"kind":"Name","value":"twoFactorKey"}}]}}]}}]} as unknown as DocumentNode<UserQuery, UserQueryVariables>;
