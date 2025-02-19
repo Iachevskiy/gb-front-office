@@ -92,8 +92,8 @@ header {
   background: white;
 
   main {
+    overflow: hidden scroll;
     flex-grow: 1;
-    overflow-y: scroll;
 
     div {
       height: 200%;
