@@ -1,38 +1,9 @@
 <template>
   <div class="common-layout">
-    <header>
-      <logo />
-
-      <!--      <div class="wrapper"> -->
-      <!--        <nav> -->
-      <!--          <RouterLink to="/catalog"> -->
-      <!--            catalog -->
-      <!--          </RouterLink> -->
-
-      <!--          <RouterLink to="/lc"> -->
-      <!--            lc -->
-      <!--          </RouterLink> -->
-      <!--        </nav> -->
-      <!--      </div> -->
-    </header>
-
-    <Calendar
-      v-model:show="show"
-      :round="false"
-      position="right"
-    />
-
     <main>
-      <div>
-        main content
-        <button @click="show = true">
-          show
-        </button>
-
-        <pre>{{ dd }}</pre>
-
-        <RouterView />
-      </div>
+      <!--      <div> -->
+      <RouterView />
+      <!--      </div> -->
     </main>
 
     <footer>
@@ -65,26 +36,15 @@ import { ref } from "vue";
 import { RouterView } from "vue-router";
 
 import {
-  Calendar, Tabbar, TabbarItem
+  Tabbar,
+  TabbarItem
 } from "vant";
-
-import logo from "@/assets/logo.svg";
-
-import useFetch from "FSD/Shared/Fetch/useFetch.ts";
-
-const show = ref(false);
 
 const active = ref(0);
 
-const dd = useFetch();
 </script>
 
 <style lang="scss">
-header {
-  max-height: 100vh;
-  line-height: 1.5;
-}
-
 .common-layout {
   display: flex;
   height: 100%;
@@ -92,12 +52,12 @@ header {
   background: white;
 
   main {
+    display: flex;
     overflow: hidden scroll;
+    flex-direction: column;
     flex-grow: 1;
-
-    div {
-      height: 200%;
-    }
+    background: #eff2f5;
+    gap: $space-m;
   }
 
   footer {
