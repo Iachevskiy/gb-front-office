@@ -1,7 +1,9 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema   : "http://localhost:4000/graphql",
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-expect-error */
+  schema   : process.env.VITE_API_URL,
   documents: [
     "src/**/*.vue",
     "src/**/*.ts"
