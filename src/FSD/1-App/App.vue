@@ -29,7 +29,11 @@
           show
         </button>
 
-        <pre>{{ dd }}</pre>
+        <pre v-if="fetcher.result.value">{{ fetcher.result.value.role[0] }}</pre>
+
+        ff
+
+        <!--        <pre>{{ fetcher }}</pre> -->
 
         <RouterView />
       </div>
@@ -65,18 +69,28 @@ import { ref } from "vue";
 import { RouterView } from "vue-router";
 
 import {
-  Calendar, Tabbar, TabbarItem
+  Calendar,
+  Tabbar,
+  TabbarItem
 } from "vant";
 
 import logo from "@/assets/logo.svg";
 
-import useFetch from "FSD/Shared/Fetch/useFetch.ts";
+import { prepareQuery, useFetcher } from "FSD/Shared/Fetch/useFetch.ts";
+
+const fetcher = useFetcher(prepareQuery(`
+    query ExampleQuery {
+      role {
+        id
+        name
+      }
+    }
+  `));
 
 const show = ref(false);
 
 const active = ref(0);
 
-const dd = useFetch();
 </script>
 
 <style lang="scss">

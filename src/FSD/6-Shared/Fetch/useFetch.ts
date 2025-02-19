@@ -1,6 +1,7 @@
 import { computed, watch } from "vue";
 
 import { graphql } from "./generatedTypes";
+export { graphql as prepareQuery } from "./generatedTypes";
 
 import {
   ApolloClient,
@@ -9,6 +10,7 @@ import {
 } from "@apollo/client/core";
 import { provideApolloClient } from "@vue/apollo-composable";
 import { useQuery } from "@vue/apollo-composable";
+export { useQuery as useFetcher } from "@vue/apollo-composable";
 
 const httpLink = createHttpLink({ uri: import.meta.env.VITE_API_URL });
 const cache = new InMemoryCache();
