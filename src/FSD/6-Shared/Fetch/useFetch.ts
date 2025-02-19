@@ -10,8 +10,6 @@ import {
 import { provideApolloClient } from "@vue/apollo-composable";
 import { useQuery } from "@vue/apollo-composable";
 
-// const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql" });
-
 const httpLink = createHttpLink({ uri: import.meta.env.VITE_API_URL });
 const cache = new InMemoryCache();
 
@@ -24,17 +22,19 @@ provideApolloClient(apolloClient);
 
 export default () => {
   const api = useQuery(graphql(`
-    query TestModel {
-      testModel {
+    query ExampleQuery {
+      role {
         id
         name
       }
     }
   `));
 
-  const test = computed(() => api.result.value?.testModel || []);
+  const test = computed(() => api.result.value?.role || []);
 
   watch(() => test.value, () => {
     console.info(test.value);
   }, { immediate: true });
+
+  return { test };
 };

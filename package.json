@@ -13,7 +13,7 @@
     "ngrok-start": "ngrok http http://localhost:5173",
     "lint:scss": "stylelint **.{vue,scss}",
     "lint:scss:fix": "stylelint **.{vue,scss} --fix",
-    "generate:graphql": "bunx graphql-codegen --config src/FSD/6-Shared/Fetch/codegen.ts --watch"
+    "generate:graphql": "export $(grep -v '^#' .env | xargs) && bunx graphql-codegen --config src/FSD/6-Shared/Fetch/codegen.ts --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.12.11",
