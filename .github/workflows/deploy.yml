@@ -1,0 +1,71 @@
+name: Deploy Frontend to Swarm
+
+on:
+  pull_request:
+    branches:
+      - main  # Запускать CI/CD при PR в main-ветку
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Клонируем код репозитория
+        uses: actions/checkout@v4
+
+      - name: Готовим переменную тега с датой и временем
+        run: echo "IMAGE_TAG=$(date +'%d.%m.%Y_%H.%M.%S')" >> $GITHUB_ENV
+
+      - name: Устанавливаем переменную IMAGE_URL
+        run: echo "IMAGE_URL=${{ secrets.REGISTRY_URL }}/${{ secrets.APP_NAME }}:${{ env.IMAGE_TAG }}" >> $GITHUB_ENV
+
+      - name: Устанавливаем переменную SERVICE_STACK
+        run: echo "SERVICE_STACK=${{ secrets.APP_NAME }}_stack_" >> $GITHUB_ENV
+
+      - name: Устанавливаем переменную SERVICE_NAME
+        run: echo "SERVICE_NAME=${{ env.SERVICE_STACK }}_app" >> $GITHUB_ENV
+
+      - name: Устанавливаем переменную SERVICE_APP_COMPOSE_PATH
+        run: echo "SERVICE_APP_COMPOSE_PATH=/apps/${{ secrets.APP_NAME }}_composes" >> $GITHUB_ENV
+
+      - name: Собираем и пушим Docker-образ приложения
+        run: |
+                docker buildx build --platform linux/amd64 \
+                  -t ${{ env.IMAGE_URL }} \
+                  -f deploy/Dockerfile . --push
+
+      - name: Копируем compose-файлы на VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "deploy/init-files/*"
+          target: "${{ env.SERVICE_APP_COMPOSE_PATH }}"
+          strip_components: 2
+
+      - name: Подключаемся по SSH и обновляем сервис в Swarm
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            if docker service inspect ${{ env.SERVICE_NAME }} > /dev/null 2>&1; then
+              docker service update --image ${{ env.IMAGE_URL }} ${{ env.SERVICE_NAME }}
+            else
+              IMAGE_URL=${{ env.IMAGE_URL }} docker stack deploy -c ${{ env.SERVICE_APP_COMPOSE_PATH }}/app-compose.yml ${{ env.SERVICE_STACK }}
+            fi
+
+            docker service ps ${{ env.SERVICE_NAME }}
+
+
+      - name: Подключаемся по SSH и удаляем файлы compose
+        id: check-service
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rm -rf ${{ env.SERVICE_APP_COMPOSE_PATH }}
