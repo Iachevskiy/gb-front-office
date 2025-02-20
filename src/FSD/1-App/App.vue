@@ -40,7 +40,11 @@ import {
   TabbarItem
 } from "vant";
 
+import { tgInit } from "FSD/Shared/Telegram/tgInit.ts";
+
 const active = ref(0);
+
+tgInit();
 
 </script>
 

@@ -1,8 +1,6 @@
 <template>
   <NavBar title="users page" />
 
-  <pre>{{ viewport }}</pre>
-
   <CellGroup
     inset
     @click="show = true"
@@ -56,13 +54,10 @@ import PlusSvg from "@/assets/plus.svg";
 
 import { graphql } from "FSD/Shared/Fetch/generatedTypes";
 import { useFetcher } from "FSD/Shared/Fetch/useFetch.ts";
-import { tgInit } from "FSD/Shared/Telegram/tgInit.ts";
 
 defineOptions({ name: "PageUsersUIDefault" });
 
 const show = ref(false);
-
-const { viewport } = tgInit();
 
 const usersApi = useFetcher(graphql(`
     query User {
