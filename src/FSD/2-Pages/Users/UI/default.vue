@@ -17,18 +17,12 @@
   </CellGroup>
 
   <CellGroup
+    v-for="n in 20"
+    :key="n"
     inset
-    title="Group 1"
   >
     <Cell
-      title="Cell title"
-      value="Content"
-      size="large"
-      center
-    />
-
-    <Cell
-      title="Cell title"
+      :title="`Cell title ${n}`"
       value="Content"
       label="Description"
       size="large"
@@ -88,5 +82,9 @@ onMounted(() => {
 <style lang="scss">
 .content {
   height: 600px;
+}
+
+.van-cell-group--inset {
+  overflow: visible !important;
 }
 </style>
