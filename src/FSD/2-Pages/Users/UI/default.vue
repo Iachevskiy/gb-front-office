@@ -1,34 +1,23 @@
 <template>
   <NavBar title="users page" />
 
-  <CellGroup
-    inset
+  <UIKitButtonAsCard
+    :preset="EButtonAsCardPreset.userToAdd"
     @click="show = true"
-  >
-    <Cell
-      title="Добавить пользователя"
-      size="large"
-      center
-    >
-      <template #extra>
-        <PlusSvg />
-      </template>
-    </Cell>
-  </CellGroup>
+  />
 
-  <CellGroup
-    v-for="n in 20"
-    :key="n"
-    inset
+  <UIKitCard
+    title="Добавить пользователя"
+    :details="details"
   >
-    <Cell
-      :title="`Cell title ${n}`"
-      value="Content"
-      label="Description"
-      size="large"
-      center
-    />
-  </CellGroup>
+    <template #extra>
+      extra
+    </template>
+
+    <template #additionalExtra>
+      additionalExtra
+    </template>
+  </UIKitCard>
 
   <pre>{{ usersApi.result.value }}</pre>
 
@@ -45,12 +34,11 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
-import {
-  ActionSheet,
-  Cell, CellGroup, NavBar
-} from "vant";
+import { ActionSheet, NavBar } from "vant";
 
-import PlusSvg from "@/assets/plus.svg";
+import { UIKitButtonAsCard } from "FSD/Shared/UI/ButtonAsCard";
+import { EButtonAsCardPreset } from "FSD/Shared/UI/ButtonAsCard/constants.ts";
+import { UIKitCard } from "FSD/Shared/UI/Card";
 
 import { graphql } from "FSD/Shared/Fetch/generatedTypes";
 import { useFetcher } from "FSD/Shared/Fetch/useFetch.ts";
@@ -73,6 +61,17 @@ const usersApi = useFetcher(graphql(`
     }
   `));
 
+const details = [
+  {
+    label: "Пол",
+    value: "Мужской"
+  },
+  {
+    label: "Дата рождения",
+    value: "13.02.2002"
+  }
+];
+
 onMounted(() => {
   usersApi.load();
 });
@@ -82,9 +81,5 @@ onMounted(() => {
 <style lang="scss">
 .content {
   height: 600px;
-}
-
-.van-cell-group--inset {
-  overflow: visible !important;
 }
 </style>
