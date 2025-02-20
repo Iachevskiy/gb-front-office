@@ -156,6 +156,7 @@ export default {
   toUnassignFromUser  : "Отвязать от пользователя",
   toAssignForUser     : "Назначить пользователю",
   toAddUsers          : "Добавить пользователей",
+  toAddUser           : "Добавить пользователя",
   addUsers            : "Добавление пользователей",
   toDetachFromUser    : "Открепить от пользователя",
   userNotificationRule: "Правило уведомления пользователя",

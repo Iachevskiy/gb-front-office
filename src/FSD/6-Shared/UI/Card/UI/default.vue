@@ -87,6 +87,10 @@ const isVisibleSecondRow = computed(() => slots.additionalExtra || props.details
 
 <style lang="scss">
 .uikit-card {
+  .van-cell__label {
+    margin-top: 0;
+  }
+
   &__details {
     @include text-13-18-400;
     color: $color-text-secondary;
