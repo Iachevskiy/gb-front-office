@@ -68,7 +68,6 @@ onMounted(() => {
 
   footer {
     padding-bottom: $space-xl;
-    border-bottom: 4px solid red;
     box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 6%);
 
     .van-tabbar {
