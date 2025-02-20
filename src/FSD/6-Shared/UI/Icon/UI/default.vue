@@ -32,8 +32,8 @@ const props = defineProps({
 /* Маппинг иконок на асинхронные компоненты */
 const iconComponents = computed(() => ({
   [EIcon.edit]           : defineAsyncComponent(() => import("@/assets/edit.svg")),
-  [EIcon.factor]         : defineAsyncComponent(() => import("@/assets/edit.svg")),
-  [EIcon.otp]            : defineAsyncComponent(() => import("@/assets/edit.svg")),
+  [EIcon.addUser]        : defineAsyncComponent(() => import("@/assets/addUser.svg")),
+  [EIcon.plus]           : defineAsyncComponent(() => import("@/assets/plus.svg")),
   [EIcon.password]       : defineAsyncComponent(() => import("@/assets/edit.svg")),
   [EIcon.recovery]       : defineAsyncComponent(() => import("@/assets/edit.svg")),
   [EIcon.authFingerprint]: defineAsyncComponent(() => import("@/assets/edit.svg"))
@@ -62,5 +62,11 @@ const classes = computed(() => {
     width: 20px;
     height: 20px;
     font-size: 20px;
+
+  &__size-large {
+    width: 26px;
+    height: 26px;
+    font-size: 26px;
+  }
 }
 </style>

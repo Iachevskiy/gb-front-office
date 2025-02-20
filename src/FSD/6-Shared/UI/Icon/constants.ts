@@ -1,7 +1,7 @@
 export enum EIcon {
   edit = "edit",
-  factor = "factor",
-  otp = "otp",
+  addUser="addUser",
+  plus = "plus",
   password = "password",
   recovery = "recovery",
   authFingerprint = "authFingerprint",
