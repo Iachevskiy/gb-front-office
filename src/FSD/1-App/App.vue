@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { RouterView } from "vue-router";
 
 import {
@@ -40,13 +40,7 @@ import {
   TabbarItem
 } from "vant";
 
-import { tgInit } from "FSD/Shared/Telegram/tgInit.ts";
-
 const active = ref(0);
-
-onMounted(() => {
-  tgInit();
-});
 
 </script>
 
