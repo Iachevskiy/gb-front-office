@@ -4,6 +4,14 @@
     @click="handleClick"
   >
     <main>
+      query
+      <pre>{{ route.query }}</pre>
+
+      params
+      <pre>{{ route.params }}</pre>
+
+      hash
+      <pre>{{ route.hash }}</pre>
       <!--      <div> -->
       <RouterView />
       <!--      </div> -->
@@ -36,7 +44,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouterView } from "vue-router";
+import { RouterView, useRoute } from "vue-router";
 
 import {
   Tabbar,
@@ -52,6 +60,8 @@ const { handleHapticFeedbackTG } = tgInit();
 const handleClick = () => {
   handleHapticFeedbackTG();
 };
+
+const route = useRoute();
 
 </script>
 
