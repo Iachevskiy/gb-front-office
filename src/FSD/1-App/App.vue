@@ -1,5 +1,8 @@
 <template>
-  <div class="common-layout">
+  <div
+    class="common-layout"
+    @click="handleClick"
+  >
     <main>
       <!--      <div> -->
       <RouterView />
@@ -44,7 +47,11 @@ import { tgInit } from "FSD/Shared/Telegram/tgInit.ts";
 
 const active = ref(0);
 
-tgInit();
+const { handleHapticFeedbackTG } = tgInit();
+
+const handleClick = () => {
+  handleHapticFeedbackTG();
+};
 
 </script>
 

@@ -9,15 +9,7 @@
   <UIKitCard
     title="Добавить пользователя"
     :details="details"
-  >
-    <template #extra>
-      extra
-    </template>
-
-    <template #additionalExtra>
-      additionalExtra
-    </template>
-  </UIKitCard>
+  />
 
   <pre>{{ usersApi.result.value }}</pre>
 
