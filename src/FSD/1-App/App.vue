@@ -4,14 +4,8 @@
     @click="handleClick"
   >
     <main>
-      query
-      <pre>{{ route.query }}</pre>
-
-      params
-      <pre>{{ route.params }}</pre>
-
-      hash
-      <pre>{{ route.hash }}</pre>
+      dfd
+      <pre>{{ dfd }}</pre>
       <!--      <div> -->
       <RouterView />
       <!--      </div> -->
@@ -43,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { RouterView, useRoute } from "vue-router";
 
 import {
@@ -62,6 +56,17 @@ const handleClick = () => {
 };
 
 const route = useRoute();
+
+const dfd = computed(() => {
+  const { hash } = route;
+  if (!hash.length) {
+    return null;
+  }
+
+  const params = new URLSearchParams(hash.slice(1));
+
+  return params.get("tgWebAppVersion");
+});
 
 </script>
 
