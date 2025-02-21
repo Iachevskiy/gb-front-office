@@ -4,8 +4,8 @@
     @click="handleClick"
   >
     <main>
-      dfd
-      <pre>{{ dfd }}</pre>
+      launchParams
+      <pre>{{ launchParams }}</pre>
       <!--      <div> -->
       <RouterView />
       <!--      </div> -->
@@ -37,8 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { RouterView, useRoute } from "vue-router";
+import { ref } from "vue";
+import { RouterView } from "vue-router";
 
 import {
   Tabbar,
@@ -49,24 +49,24 @@ import { tgInit } from "FSD/Shared/Telegram/tgInit.ts";
 
 const active = ref(0);
 
-const { handleHapticFeedbackTG } = tgInit();
+const { handleHapticFeedbackTG, launchParams } = tgInit();
 
 const handleClick = () => {
   handleHapticFeedbackTG();
 };
 
-const route = useRoute();
+// const route = useRoute();
 
-const dfd = computed(() => {
-  const { hash } = route;
-  if (!hash.length) {
-    return null;
-  }
-
-  const params = new URLSearchParams(hash.slice(1));
-
-  return params.get("tgWebAppVersion");
-});
+// const dfd = computed(() => {
+//   const { hash } = route;
+//   if (!hash.length) {
+//     return null;
+//   }
+//
+//   const params = new URLSearchParams(hash.slice(1));
+//
+//   return params.get("tgWebAppVersion");
+// });
 
 </script>
 

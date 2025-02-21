@@ -2,11 +2,12 @@
 import { onMounted, ref } from "vue";
 
 import {
-  init, on, postEvent
+  init, on, postEvent, retrieveLaunchParams
 } from "@telegram-apps/sdk-vue";
 
 export const tgInit = () => {
 
+  const launchParams = ref({});
   const viewport = ref({});
   const isInTg = ref(false);
 
@@ -34,6 +35,8 @@ export const tgInit = () => {
       on("viewport_changed", (payload) => {
         viewport.value = payload;
       });
+
+      launchParams.value = retrieveLaunchParams();
     }
     catch (error) {
       console.warn(error);
@@ -42,7 +45,8 @@ export const tgInit = () => {
 
   return {
     viewport,
-    handleHapticFeedbackTG
+    handleHapticFeedbackTG,
+    launchParams
   };
 
 };
